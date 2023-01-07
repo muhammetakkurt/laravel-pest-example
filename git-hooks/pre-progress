@@ -11,6 +11,6 @@ if ($returnCode !== 0) {
   exit(1);
 }
 
-// Show summary (last line)
-print_r(array_slice($outputs, -3, 3, true));
+// Show summary (last 3 line)
+foreach (array_slice($outputs, -3, 3, true) as $output) echo $output;
 exit(0);
