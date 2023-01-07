@@ -1,3 +1,7 @@
+### Installation
+```touch database/database.sqlite```
+
+### Configuration
 Open ```git-hooks/pre-progress``` file.
 Run ```which php``` command in your terminal, then replace this line ```#!/opt/homebrew/bin/php``` with yours. 
 
