@@ -1,24 +1,22 @@
 Open ```git-hooks/pre-progress``` file.
 Run ```which php``` command in your terminal, then replace this line ```#!/opt/homebrew/bin/php``` with yours. 
 
-I've been used PEST Test framework which is running with PHP Frameworks. It uses pest commands as like ```./vendor/bin/pest``` for running my test cases. You can paste your execute command. 
+I've been used <strong>PEST</strong> Test framework which is running with PHP Frameworks. It uses pest commands as like ```./vendor/bin/pest``` for running my test cases. You can paste your execute command. 
 
-```
+```php
 #!/opt/homebrew/bin/php
 <?php
 
 echo "Running tests.. " . PHP_EOL;
-exec('./vendor/bin/pest', $outputs, $returnCode);
+exec('./vendor/bin/pest', $testResults, $returnCode);
 if ($returnCode !== 0) {
-  foreach($outputs as $output){
-    echo $output . PHP_EOL;
-  }
-  echo "Opps! Something went wrong. Can not push changes untill tests are OK." . PHP_EOL;
-  exit(1);
+    foreach($testResults as $testResult) echo $testResult . PHP_EOL;
+    echo "Opps! Something went wrong. Can not push changes until tests are OK." . PHP_EOL;
+    exit(1);
 }
 
-// Show summary (last line)
-echo array_pop($outputs) . PHP_EOL;
+// Show summary (last 3 line)
+foreach (array_slice($testResults, -3, 3) as $testResult) echo $testResult . PHP_EOL;
 exit(0);
 ```
 
