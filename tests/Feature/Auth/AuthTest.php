@@ -14,7 +14,7 @@ test('user can login with valid credentials', function () {
     $response->assertStatus(Response::HTTP_OK);
     $response->assertJsonStructure([
         'data' => [
-            'token', 'token_type'
+            'token123', 'token_type'
         ]
     ]);
 
