@@ -12,5 +12,5 @@ if ($returnCode !== 0) {
 }
 
 // Show summary (last 3 line)
-foreach (array_slice($outputs, -3, 3, true) as $output) echo $output . PHP_EOL;
+foreach (array_slice($outputs, -3, 3) as $output) echo $output . PHP_EOL;
 exit(0);
