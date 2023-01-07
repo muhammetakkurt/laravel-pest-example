@@ -1,7 +1,7 @@
 Open ```git-hooks/pre-progress``` file.
 Run ```which php``` command in your terminal, then replace this line ```#!/opt/homebrew/bin/php``` with yours. 
 
-I've been used <strong>PEST</strong> Test framework which is running with PHP Frameworks. It uses pest commands as like ```./vendor/bin/pest``` for running my test cases. You can paste your execute command. 
+I will change the pre-commit and pre-push files as below. I've used <strong>PEST</strong> Test framework which runs with PHP Frameworks. It uses pest commands as like ```./vendor/bin/pest``` for running my test cases. You can paste your execute command. 
 
 ```php
 #!/opt/homebrew/bin/php
@@ -36,7 +36,7 @@ chmod +x .git/hooks/pre-push
 ```
 
 ### Commit
-"Run Git hooks" checkbox will has been appeared in the "Before commit" area.
+"Run Git hooks" checkbox will have been appeared in the "Before commit" area.
 
 <img width="851" alt="Screen Shot 2023-01-07 at 08 41 19" src="https://user-images.githubusercontent.com/4670039/211133153-ad3b7c5b-f631-4a7b-a43b-cb5727cfb1e9.png">
 
