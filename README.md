@@ -43,7 +43,7 @@ chmod +x .git/hooks/pre-push
 
 ## Result
 ### Error Case;
-<img width="818" alt="Screen Shot 2023-01-07 at 08 25 25" src="https://user-images.githubusercontent.com/4670039/211132689-36cf62a7-13be-47db-a62f-1f3e12ecdae5.png">
+<img width="615" alt="Screen Shot 2023-01-07 at 08 57 10" src="https://user-images.githubusercontent.com/4670039/211133613-aa73a13a-0f67-4b06-9f8c-b390f5a39bb8.png">
 
 ### Success Case;
 <img width="922" alt="Screen Shot 2023-01-07 at 08 45 20" src="https://user-images.githubusercontent.com/4670039/211133362-12d749d3-3528-4d51-bfbe-fc56018323ca.png">
