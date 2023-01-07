@@ -33,7 +33,6 @@ test('user can not login with invalid credentials', function () {
 test('user can not login with fake email even thought it already exist in database', function () {
     
     $email = 'example@example.com';
-    
     User::factory(['email' => $email])->create();
     
     $response = post(route('auth.login'), [

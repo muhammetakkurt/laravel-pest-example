@@ -37,6 +37,12 @@ chmod +x .git/hooks/pre-commit
 chmod +x .git/hooks/pre-push
 ```
 
+### Commit
+"Run Git hooks" checkbox will has been appeared in the "Before commit" area.
+
+<img width="851" alt="Screen Shot 2023-01-07 at 08 41 19" src="https://user-images.githubusercontent.com/4670039/211133153-ad3b7c5b-f631-4a7b-a43b-cb5727cfb1e9.png">
+
+
 ## Result
 ### Error Case;
 <img width="818" alt="Screen Shot 2023-01-07 at 08 25 25" src="https://user-images.githubusercontent.com/4670039/211132689-36cf62a7-13be-47db-a62f-1f3e12ecdae5.png">
