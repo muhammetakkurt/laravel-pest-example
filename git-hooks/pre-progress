@@ -12,5 +12,5 @@ if ($returnCode !== 0) {
 }
 
 // Show summary (last line)
-echo array_pop($outputs) . PHP_EOL;
+print_r(array_slice($a, -3, 3, true));
 exit(0);
