@@ -4,15 +4,11 @@
 echo "Running tests.. " . PHP_EOL;
 exec('./vendor/bin/pest', $outputs, $returnCode);
 if ($returnCode !== 0) {
-  foreach($outputs as $output){
-    echo $output . PHP_EOL;
-  }
+  foreach($outputs as $output) echo $output . PHP_EOL;
   echo "Opps! Something went wrong. Can not push changes untill tests are OK." . PHP_EOL;
   exit(1);
 }
 
 // Show summary (last 3 line)
-foreach (array_slice($outputs, -3, 3) as $output){
-    echo $output . PHP_EOL;
-};
+foreach (array_slice($outputs, -3, 3) as $output) echo $output . PHP_EOL;
 exit(0);
