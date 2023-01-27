@@ -118,9 +118,7 @@ jobs:
       # execute migration rules before running tests and self-fixing,
       # so that we know that our codebase is future-ready
       - name: Create DB and schemas
-        run: |
-          touch database/database.sqlite
-          php artisan migrate
+        run: touch database/database.sqlite
 
       - name: Copy ENV Laravel Configuration for CI
         run: php -r "file_exists('.env') || copy('.env.test', '.env');"
