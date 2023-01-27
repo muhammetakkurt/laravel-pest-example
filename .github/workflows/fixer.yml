@@ -129,7 +129,7 @@ jobs:
         env:
           PHP_CS_FIXER_IGNORE_ENV: ${{ matrix.PHP_CS_FIXER_IGNORE_ENV }}
           FAST_LINT_TEST_CASES: ${{ matrix.FAST_LINT_TEST_CASES }}
-        run: vendor/bin/phpunit ${{ matrix.phpunit-flags }}
+        run: vendor/bin/pest ${{ matrix.phpunit-flags }}
 
       - name: Upload coverage results to Coveralls
         if: matrix.calculate-code-coverage == 'yes'
@@ -151,7 +151,7 @@ jobs:
         if: matrix.execute-deployment == 'yes'
         run: |
           ./dev-tools/build.sh
-          PHP_CS_FIXER_TEST_ALLOW_SKIPPING_SMOKE_TESTS=0 vendor/bin/phpunit tests/Smoke/
+          PHP_CS_FIXER_TEST_ALLOW_SKIPPING_SMOKE_TESTS=0 vendor/bin/pest tests/Smoke/
       - name: Execute deployment post-hook
         if: matrix.execute-deployment == 'yes' && startsWith(github.ref, 'refs/tags/v')
         env:
