@@ -14,21 +14,6 @@ jobs:
       matrix:
         include:
           - operating-system: 'ubuntu-20.04'
-            php-version: '7.4'
-            job-description: 'with lowest deps'
-            composer-flags: '--prefer-stable --prefer-lowest' # should be checked on the lowest supported PHP version
-
-          - operating-system: 'ubuntu-20.04'
-            php-version: '7.4'
-            job-description: 'with PHPDoc to type rules'
-            phpdoc-to-type-rules: 'yes' # should be checked on the lowest supported PHP version
-
-          - operating-system: 'ubuntu-20.04'
-            php-version: '7.4'
-            job-description: 'with Symfony ^5'
-            execute-flex-with-symfony-version: '^5' # explicit check for Symfony 5.x compatibility
-
-          - operating-system: 'ubuntu-20.04'
             php-version: '8.0'
             job-description: 'with Symfony ^6'
             execute-flex-with-symfony-version: '^6' # explicit check for Symfony 6.x compatibility
@@ -48,11 +33,6 @@ jobs:
             php-version: '8.2'
             PHP_CS_FIXER_IGNORE_ENV: 1
             composer-flags: '--ignore-platform-req=PHP'
-
-          - operating-system: 'windows-latest'
-            php-version: '8.1'
-            job-description: 'on Windows'
-            FAST_LINT_TEST_CASES: 1
 
           - operating-system: 'macos-latest'
             php-version: '8.1'
