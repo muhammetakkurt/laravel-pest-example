@@ -117,9 +117,6 @@ jobs:
             composer info -D
       # execute migration rules before running tests and self-fixing,
       # so that we know that our codebase is future-ready
-      - name: Generate key
-        run: php artisan key:generate
-
       - name: Create DB and schemas
         run: |
           mkdir -p database
@@ -128,6 +125,9 @@ jobs:
 
       - name: Copy ENV Laravel Configuration for CI
         run: php -r "file_exists('.env') || copy('.env.test', '.env');"
+
+      - name: Generate key
+        run: php artisan key:generate
 
       - name: Run PHP CS Fixer with migration rules
         if: matrix.migration-rules == 'yes'
