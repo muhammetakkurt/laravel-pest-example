@@ -150,7 +150,7 @@ jobs:
         env:
           PHP_CS_FIXER_IGNORE_ENV: ${{ matrix.PHP_CS_FIXER_IGNORE_ENV }}
           PHP_CS_FIXER_FUTURE_MODE: 1
-        run: ./vendor/bin/php-cs-fixer fix app --diff --dry-run -v --config .php-cs-fixer
+        run: ./vendor/bin/php-cs-fixer fix app --diff --dry-run -v --config .php-cs-fixer.php
 
       - name: Execute deployment checks
         if: matrix.execute-deployment == 'yes'
