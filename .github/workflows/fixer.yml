@@ -130,9 +130,8 @@ jobs:
         if: matrix.migration-rules == 'yes'
         run: php php-cs-fixer fix --config .php-cs-fixer -q
 
-      - name: Disable time limit for tests when collecting coverage
-        if: matrix.calculate-code-coverage == 'yes'
-        run: sed 's/enforceTimeLimit="true"/enforceTimeLimit="false"/g' phpunit.xml.dist > phpunit.xml
+      - name: Run tests with coverage
+        run: vendor/bin/pest --coverage
 
       - name: Run tests
         env:
