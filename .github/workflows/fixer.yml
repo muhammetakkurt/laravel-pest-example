@@ -35,11 +35,6 @@ jobs:
 
           - operating-system: 'ubuntu-20.04'
             php-version: '8.1'
-            job-description: 'with migration rules'
-            migration-rules: 'yes' # should be checked on the highest supported PHP version
-
-          - operating-system: 'ubuntu-20.04'
-            php-version: '8.1'
             job-description: 'with calculating code coverage'
             calculate-code-coverage: 'yes'
             phpunit-flags: '--testsuite coverage --exclude-group covers-nothing --coverage-clover build/logs/clover.xml'
@@ -126,12 +121,8 @@ jobs:
       - name: Generate key
         run: php artisan key:generate
 
-      - name: Run PHP CS Fixer with migration rules
-        if: matrix.migration-rules == 'yes'
-        run: php php-cs-fixer fix --config .php-cs-fixer -q
-
       - name: Run tests with coverage
-        run: vendor/bin/pest --coverage
+        run: ./vendor/bin/pest --coverage
 
       - name: Run tests
         env:
@@ -139,13 +130,9 @@ jobs:
           FAST_LINT_TEST_CASES: ${{ matrix.FAST_LINT_TEST_CASES }}
         run: vendor/bin/pest ${{ matrix.phpunit-flags }}
 
-      - name: Upload coverage results to Coveralls
-        if: matrix.calculate-code-coverage == 'yes'
-        env:
-          COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: php vendor/bin/php-coveralls --verbose
-
       - name: Run PHP CS Fixer
+        env:
+          PHP_CS_FIXER_IGNORE_ENV: ${{ matrix.PHP_CS_FIXER_IGNORE_ENV }}
         run: ./vendor/bin/php-cs-fixer fix app --diff --dry-run -v --config .php-cs-fixer.php
 
       #- name: Execute deployment checks
