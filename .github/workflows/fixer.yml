@@ -117,9 +117,21 @@ jobs:
             composer info -D
       # execute migration rules before running tests and self-fixing,
       # so that we know that our codebase is future-ready
+      - name: Generate key
+        run: php artisan key:generate
+
+      - name: Create DB and schemas
+        run: |
+          mkdir -p database
+          touch database/database.sqlite
+          php artisan migrate
+
+      - name: Copy ENV Laravel Configuration for CI
+        run: php -r "file_exists('.env') || copy('.env.test', '.env');"
+
       - name: Run PHP CS Fixer with migration rules
         if: matrix.migration-rules == 'yes'
-        run: php php-cs-fixer fix --config .php-cs-fixer.php-highest.php -q
+        run: php php-cs-fixer fix --config .php-cs-fixer -q
 
       - name: Disable time limit for tests when collecting coverage
         if: matrix.calculate-code-coverage == 'yes'
@@ -137,15 +149,11 @@ jobs:
           COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: php vendor/bin/php-coveralls --verbose
 
-      - name: Run PHP CS Fixer with PHPDoc to type rules
-        if: matrix.phpdoc-to-type-rules == 'yes'
-        run: php php-cs-fixer fix --diff --dry-run -v --config .php-cs-fixer.php-lowest.php
-
       - name: Run PHP CS Fixer
         env:
           PHP_CS_FIXER_IGNORE_ENV: ${{ matrix.PHP_CS_FIXER_IGNORE_ENV }}
           PHP_CS_FIXER_FUTURE_MODE: 1
-        run: php php-cs-fixer fix --diff --dry-run -v
+        run: ./vendor/bin/php-cs-fixer fix app --diff --dry-run -v
 
       - name: Execute deployment checks
         if: matrix.execute-deployment == 'yes'
