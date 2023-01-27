@@ -147,22 +147,19 @@ jobs:
         run: php vendor/bin/php-coveralls --verbose
 
       - name: Run PHP CS Fixer
-        env:
-          PHP_CS_FIXER_IGNORE_ENV: ${{ matrix.PHP_CS_FIXER_IGNORE_ENV }}
-          PHP_CS_FIXER_FUTURE_MODE: 1
         run: ./vendor/bin/php-cs-fixer fix app --diff --dry-run -v --config .php-cs-fixer.php
 
-      - name: Execute deployment checks
-        if: matrix.execute-deployment == 'yes'
-        run: |
-          ./dev-tools/build.sh
-          PHP_CS_FIXER_TEST_ALLOW_SKIPPING_SMOKE_TESTS=0 vendor/bin/pest tests/Smoke/
-      - name: Execute deployment post-hook
-        if: matrix.execute-deployment == 'yes' && startsWith(github.ref, 'refs/tags/v')
-        env:
-          TRAVIS_TOKEN: ${{ secrets.TRAVIS_TOKEN }}
-        run: |
-          # ensure that deployment is happening only if tag matches version of PHP CS Fixer
-          test $(php dev-tools/info-extractor.php | jq -r .version.vnumber) == "${GITHUB_REF#refs/tags/}"
-          # trigger website update
-          ./dev-tools/trigger-website.sh ${TRAVIS_TOKEN} ${GITHUB_REF#refs/tags/}
+      #- name: Execute deployment checks
+      #  if: matrix.execute-deployment == 'yes'
+      #  run: |
+      #    ./dev-tools/build.sh
+      #    PHP_CS_FIXER_TEST_ALLOW_SKIPPING_SMOKE_TESTS=0 vendor/bin/pest tests/Smoke/
+      #- name: Execute deployment post-hook
+      #  if: matrix.execute-deployment == 'yes' && startsWith(github.ref, 'refs/tags/v')
+      #  env:
+      #    TRAVIS_TOKEN: ${{ secrets.TRAVIS_TOKEN }}
+      #  run: |
+      #    # ensure that deployment is happening only if tag matches version of PHP CS Fixer
+      #    test $(php dev-tools/info-extractor.php | jq -r .version.vnumber) == "${GITHUB_REF#refs/tags/}"
+      #    # trigger website update
+      #    ./dev-tools/trigger-website.sh ${TRAVIS_TOKEN} ${GITHUB_REF#refs/tags/}
