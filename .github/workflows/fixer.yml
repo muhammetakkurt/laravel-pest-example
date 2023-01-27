@@ -75,7 +75,7 @@ jobs:
         uses: actions/github-script@v6
         id: code-coverage-driver
         with:
-          script: 'return "${{ matrix.calculate-code-coverage }}" == "yes" ? "pcov" : "none"'
+          script: 'return "${{ matrix.calculate-code-coverage }}" == "yes" ? "pcov" : "xdebug"'
           result-encoding: string
 
       - name: Setup PHP
