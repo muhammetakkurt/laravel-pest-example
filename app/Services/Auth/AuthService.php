@@ -17,7 +17,7 @@ class AuthService
         $validated = $request->validated();
         $user = User::whereEmail($validated['email'])->first();
 
-        if (empty($user) || ! Hash::check($validated['password'], $user->password)) {
+        if (empty($user) || ! Hash::check($validated['password'],$user->password)) {
             throw new Exception('Invalid credentials');
         }
 
